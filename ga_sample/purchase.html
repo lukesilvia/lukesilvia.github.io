@@ -39,6 +39,18 @@
           <a id="submit_purchase" class="btn btn-primary btn-lg" role="button" href="#">購入する</a>
         </p>
       </div>
+      <script>
+        jQuery("#submit_purchase").click( () => {
+          var gaClientID, gaClientIDType;
+
+          ga.getAll().forEach( (tracker) => { gaClientID = tracker.get('clientId') } );
+          gaClientIDType = ( parseInt(gaClientID.slice( -1 )) % 2 === 0 ) ? 'even' : 'odd';
+
+          console.log("Debug: Clicked Purchase Button. Send ClientIDType(" + gaClientIDType + ") to GA.");
+
+          gtag('event', 'purchase', {'clientIdType': gaClientIDType});
+        })
+      </script>
     </main>
   </body>
 </html>
