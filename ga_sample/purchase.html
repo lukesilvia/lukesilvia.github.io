@@ -42,8 +42,12 @@
       </div>
       <script>
         jQuery(".purchase a").click( () => {
-          var gaClientID, gaClientIDType, purchasedPoint;
+          var gaClientID,
+              gaClientIDType,
+              purchasedPoint
+              transactionID;
 
+          transactionID  = Math.random().toString();
           purchasedPoint = jQuery(this).dataset.point;
 
           ga.getAll().forEach( (tracker) => { gaClientID = tracker.get('clientId') } );
@@ -51,7 +55,12 @@
 
           console.log("Debug: Purchase " purchasedPoint "pt. Send ClientIDType(" + gaClientIDType + ") to GA.");
 
-          gtag('event', 'purchase', {'clientIdType': gaClientIDType});
+          gtag('event', 'purchase', {
+            'transaction_id': transactionID,
+            'affiliation': 'Sample Store',
+            'value': purchasedPoint,
+            'clientIdType': gaClientIDType
+          });
         })
       </script>
     </main>
