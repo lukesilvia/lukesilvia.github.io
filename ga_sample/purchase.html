@@ -49,7 +49,7 @@
               transactionID;
 
           transactionID  = Math.random().toString();
-          purchasedPoint = jQuery(this).dataset.point;
+          purchasedPoint = jQuery(this).data().point;
 
           ga.getAll().forEach( (tracker) => { gaClientID = tracker.get('clientId') } );
           gaClientIDType = ( parseInt(gaClientID.slice( -1 )) % 2 === 0 ) ? 'even' : 'odd';
