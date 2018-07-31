@@ -35,18 +35,21 @@
         <p>
         購入しますか？
         </p>
-        <p>
-          <a id="submit_purchase" class="btn btn-primary btn-lg" role="button" href="#">購入する</a>
+        <p class="purchase">
+          <a class="btn btn-primary btn-lg" role="button" data-point="100" href="#">100ポイント購入する</a>
+          <a class="btn btn-primary btn-lg" role="button" data-point="500" href="#">500ポイント購入する</a>
         </p>
       </div>
       <script>
-        jQuery("#submit_purchase").click( () => {
-          var gaClientID, gaClientIDType;
+        jQuery(".purchase a").click( () => {
+          var gaClientID, gaClientIDType, purchasedPoint;
+
+          purchasedPoint = jQuery(this).dataset.point;
 
           ga.getAll().forEach( (tracker) => { gaClientID = tracker.get('clientId') } );
           gaClientIDType = ( parseInt(gaClientID.slice( -1 )) % 2 === 0 ) ? 'even' : 'odd';
 
-          console.log("Debug: Clicked Purchase Button. Send ClientIDType(" + gaClientIDType + ") to GA.");
+          console.log("Debug: Purchase " purchasedPoint "pt. Send ClientIDType(" + gaClientIDType + ") to GA.");
 
           gtag('event', 'purchase', {'clientIdType': gaClientIDType});
         })
