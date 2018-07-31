@@ -42,14 +42,14 @@
         </p>
       </div>
       <script>
-        jQuery(".purchase a").click( () => {
+        jQuery(".purchase a").click( (target) => {
           var gaClientID,
               gaClientIDType,
               purchasedPoint,
               transactionID;
 
           transactionID  = Math.random().toString();
-          purchasedPoint = jQuery(this).data().point;
+          purchasedPoint = target.data().point;
 
           ga.getAll().forEach( (tracker) => { gaClientID = tracker.get('clientId') } );
           gaClientIDType = ( parseInt(gaClientID.slice( -1 )) % 2 === 0 ) ? 'even' : 'odd';
