@@ -40,6 +40,7 @@
 
           <a class="btn btn-primary" role="button" data-point="500" href="#">500ポイント購入する</a>
         </p>
+        <p id="message"></p>
       </div>
       <script>
         jQuery( function() {
@@ -51,6 +52,8 @@
 
             transactionID  = Math.random().toString();
             purchasedPoint = jQuery(this).data().point;
+
+            jQuery("#message").text(purchasedPoint + "pt 購入しました。");
 
             ga.getAll().forEach( (tracker) => { gaClientID = tracker.get('clientId') } );
             gaClientIDType = ( parseInt(gaClientID.slice( -1 )) % 2 === 0 ) ? 'even' : 'odd';
