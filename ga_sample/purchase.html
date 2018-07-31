@@ -54,7 +54,7 @@
           ga.getAll().forEach( (tracker) => { gaClientID = tracker.get('clientId') } );
           gaClientIDType = ( parseInt(gaClientID.slice( -1 )) % 2 === 0 ) ? 'even' : 'odd';
 
-          console.log("Debug: Purchase " purchasedPoint "pt. Send ClientIDType(" + gaClientIDType + ") to GA.");
+          console.log("Debug: Purchase " + purchasedPoint + "pt. Send ClientIDType(" + gaClientIDType + ") to GA.");
 
           gtag('event', 'purchase', {
             'transaction_id': transactionID,
